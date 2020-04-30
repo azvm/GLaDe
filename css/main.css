@@ -1,0 +1,17 @@
+html {
+    font-size: 20px !important;
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+#app > main {
+    flex: 1;
+}
+
+footer img {
+    width: 200px;
+}
