@@ -1,0 +1,2 @@
+# GLaDe
+Game Language Decoder
