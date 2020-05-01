@@ -39,15 +39,16 @@
                                     <button @click="clear" class="delete is-pulled-right"></button>
                                 </label>
                                 <div class="control">
-                                    <p id="encodedText" @input="inputDirect" class="textarea" :style="encodedTextInputStyle" contenteditable></p>
+                                    <pre id="encodedText" @input="inputDirect" class="textarea"
+                                        :style="encodedTextInputStyle" contenteditable="true"></pre>
                                 </div>
                             </div>
 
                             <div v-for="(characterGroup, index) in currentLanguage.characters" :key="index"
                                 class="buttons is-centered is-marginless has-addons">
                                 <button v-for="(character, index) in characterGroup" :key="index"
-                                    @click="inputKeypad(character)" class="button"
-                                    :style="keypadStyle" :title="character">{{ character }}</button>
+                                    @click="inputKeypad(character)" class="button" :style="keypadStyle"
+                                    :title="character">{{ character }}</button>
                             </div>
 
                             <div class="buttons is-centered is-marginless has-addons">
@@ -64,7 +65,8 @@
                             <div class="field">
                                 <label for="decodedText" class="label">Decoded text</label>
                                 <div class="control">
-                                    <textarea id="decodedText" class="textarea" readonly>{{ decodedText }}</textarea>
+                                    <textarea id="decodedText" class="textarea"
+                                        readonly="true">{{ decodedText }}</textarea>
                                 </div>
                             </div>
                         </div>
@@ -76,20 +78,23 @@
             <div class="container">
                 <div class="level">
                     <div class="level-item">
-                        <a href="https://bulma.io/">
-                            <img src="https://raw.githubusercontent.com/jgthms/bulma/master/docs/images/made-with-bulma.png"
-                                alt="Bulma">
+                        <p>Powered by&nbsp;</p>
+                        <a href="https://vuejs.org">
+                            <img src="https://raw.githubusercontent.com/vuejs/art/master/logo.png" alt="Vue.js"
+                                width="100px">
                         </a>
                     </div>
                     <div class="level-item">
-                        <a href="https://vuejs.org/">
-                            <img src="https://raw.githubusercontent.com/vuejs/art/master/logo.png" alt="Vue.js">
+                        <p>Styled with&nbsp;</p>
+                        <a href="https://bulma.io">
+                            <img src="https://raw.githubusercontent.com/jgthms/bulma/master/docs/images/bulma-logo.png"
+                                alt="Bulma" width="100px">
                         </a>
                     </div>
                     <div class="level-item">
-                        <a href="https://www.pentacom.jp/pentacom/bitfontmaker2/">
-                            <img src="https://www.pentacom.jp/pentacom/bitfontmaker2/img/copy.gif"
-                                alt="BitFontMaker2">
+                        <p>Fonts created using&nbsp;</p>
+                        <a href="https://www.pentacom.jp/pentacom/bitfontmaker2">
+                            <strong>BitFontMaker2</strong>
                         </a>
                     </div>
                 </div>
