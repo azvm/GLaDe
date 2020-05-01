@@ -58,6 +58,9 @@
                                 <button @click="encodedText += '\n'" class="button" title="Newline">
                                     <strong>↵</strong>
                                 </button>
+                                <button @click="encodedText = encodedText.slice(0, -1)" class="button" title="Backspace">
+                                    <strong>←</strong>
+                                </button>
                             </div>
                         </div>
 
