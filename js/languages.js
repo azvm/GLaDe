@@ -1,6 +1,7 @@
 const LANGUAGES = [{
         name: "Alien Language",
         game: "Environmental Station Alpha",
+        fontFamily: "ESA",
         characters: [
             "QWERTYUIOP",
             "ASDFGHJKL",
@@ -11,6 +12,7 @@ const LANGUAGES = [{
     {
         name: "Zu Language",
         game: "Fez",
+        fontFamily: "Fez",
         characters: [
             "0123456789",
             "③④⑤⑥⑦⑩",
@@ -18,8 +20,6 @@ const LANGUAGES = [{
             "ASDFGHJKL",
             "ZXCVBNM"
         ],
-        writingMode: "vertical-rl",
-        textOrientation: "upright",
         decode: encodedText => encodedText.replace("③", "3")
             .replace("④", "4")
             .replace("⑤", "5")

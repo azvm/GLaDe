@@ -13,42 +13,10 @@ const app = new Vue({
         decodedText() {
             return this.currentLanguage.decode(this.encodedText)
         },
-        encodedTextInputStyle() {
+        fontStyle() {
             return {
-                "font-family": this.currentLanguage.game,
-                "writing-mode": this.currentLanguage.writingMode,
-                "text-orientation": this.currentLanguage.textOrientation,
-                "resize": "vertical",
-                "overflow": "auto"
+                "font-family": this.currentLanguage.fontFamily,
             }
-        },
-        keypadStyle() {
-            return {
-                "font-family": this.currentLanguage.game,
-            }
-        },
-        encodedTextInput() {
-            return document.getElementById("encodedText")
         }
-    },
-    methods: {
-        synchronizeInput() {
-            this.encodedTextInput.textContent = this.encodedText
-        },
-        inputDirect(event) {
-            this.encodedText = event.target.textContent
-            this.synchronizeInput()
-        },
-        inputKeypad(character) {
-            this.encodedText += character
-            this.synchronizeInput()
-        },
-        clear() {
-            this.encodedText = ""
-            this.synchronizeInput()
-        }
-    },
-    mounted() {
-        this.synchronizeInput()
     }
 })

@@ -36,18 +36,18 @@
                             <div class="field">
                                 <label for="encodedText" class="label">
                                     <span>Encoded text</span>
-                                    <button @click="clear" class="delete is-pulled-right"></button>
+                                    <button @click="encodedText = ''" class="delete is-pulled-right" style="margin-top: 6px;" title="Clear"></button>
                                 </label>
                                 <div class="control">
-                                    <pre id="encodedText" @input="inputDirect" class="textarea"
-                                        :style="encodedTextInputStyle" contenteditable="true"></pre>
+                                    <textarea id="encodedText" v-model="encodedText" class="textarea"
+                                    :style="fontStyle" contenteditable="true"></textarea>
                                 </div>
                             </div>
 
                             <div v-for="(characterGroup, index) in currentLanguage.characters" :key="index"
                                 class="buttons is-centered is-marginless has-addons">
                                 <button v-for="(character, index) in characterGroup" :key="index"
-                                    @click="inputKeypad(character)" class="button" :style="keypadStyle"
+                                    @click="encodedText += character" class="button" :style="fontStyle"
                                     :title="character">{{ character }}</button>
                             </div>
 
@@ -84,6 +84,7 @@
                                 width="100px">
                         </a>
                     </div>
+
                     <div class="level-item">
                         <p>Styled with&nbsp;</p>
                         <a href="https://bulma.io">
@@ -91,6 +92,7 @@
                                 alt="Bulma" width="100px">
                         </a>
                     </div>
+
                     <div class="level-item">
                         <p>Fonts created using&nbsp;</p>
                         <a href="https://www.pentacom.jp/pentacom/bitfontmaker2">
