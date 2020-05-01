@@ -11,7 +11,3 @@ html {
 #app > main {
     flex: 1;
 }
-
-footer img {
-    width: 200px;
-}
