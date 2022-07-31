@@ -1,115 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Game Language Decoder</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.8.2/css/bulma.min.css">
-    <link rel="stylesheet" href="css/fonts.css">
-    <link rel="stylesheet" href="css/main.css">
-</head>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+    <link rel="stylesheet" href="css/fonts.css" />
+    <link rel="stylesheet" href="css/main.css" />
+  </head>
 
-<body>
+  <body>
     <div id="app">
-        <main>
-            <section class="section">
-                <div class="container">
-                    <div class="field">
-                        <label class="label">Language</label>
-                        <div class="control">
-                            <div class="select">
-                                <select v-model="currentLanguageIndex">
-                                    <option v-for="(language, index) in LANGUAGES" :key="index" :value="index"
-                                        :selected="currentLanguageIndex === index">{{ language.name }}
-                                        ({{ language.game }})
-                                    </option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="columns">
-                        <div class="column">
-                            <div class="field">
-                                <label for="encodedText" class="label">
-                                    <span>Encoded text</span>
-                                    <button @click="encodedText = ''" class="delete is-pulled-right" style="margin-top: 6px;" title="Clear"></button>
-                                </label>
-                                <div class="control">
-                                    <textarea id="encodedText" v-model="encodedText" class="textarea"
-                                    :style="fontStyle" contenteditable="true"></textarea>
-                                </div>
-                            </div>
-
-                            <div v-for="(characterGroup, index) in currentLanguage.characters" :key="index"
-                                class="buttons is-centered is-marginless has-addons">
-                                <button v-for="(character, index) in characterGroup" :key="index"
-                                    @click="encodedText += character" class="button" :style="fontStyle"
-                                    :title="character">{{ character }}</button>
-                            </div>
-
-                            <div class="buttons is-centered is-marginless has-addons">
-                                <button @click="encodedText += ' '" class="button" title="Space">
-                                    <strong>␣</strong>
-                                </button>
-                                <button @click="encodedText += '\n'" class="button" title="Newline">
-                                    <strong>↵</strong>
-                                </button>
-                                <button @click="encodedText = encodedText.slice(0, -1)" class="button" title="Backspace">
-                                    <strong>←</strong>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="column">
-                            <div class="field">
-                                <label for="decodedText" class="label">Decoded text</label>
-                                <div class="control">
-                                    <textarea id="decodedText" class="textarea"
-                                        readonly="true">{{ decodedText }}</textarea>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+      <main>
+        <section class="section">
+          <div class="container">
+            <div class="field">
+              <label class="label">Language</label>
+              <div class="control">
+                <div class="select">
+                  <select v-model="currentLanguageIndex">
+                    <option
+                      v-for="(language, index) in LANGUAGES"
+                      :key="index"
+                      :value="index"
+                      :selected="currentLanguageIndex === index"
+                    >
+                      {{ language.name }} ({{ language.game }})
+                    </option>
+                  </select>
                 </div>
-            </section>
-        </main>
-        <footer class="footer">
-            <div class="container">
-                <div class="level">
-                    <div class="level-item">
-                        <p>Powered by&nbsp;</p>
-                        <a href="https://vuejs.org">
-                            <img src="https://raw.githubusercontent.com/vuejs/art/master/logo.png" alt="Vue.js"
-                                width="100px">
-                        </a>
-                    </div>
-
-                    <div class="level-item">
-                        <p>Styled with&nbsp;</p>
-                        <a href="https://bulma.io">
-                            <img src="https://raw.githubusercontent.com/jgthms/bulma/master/docs/images/bulma-logo.png"
-                                alt="Bulma" width="100px">
-                        </a>
-                    </div>
-
-                    <div class="level-item">
-                        <p>Fonts created using&nbsp;</p>
-                        <a href="https://www.pentacom.jp/pentacom/bitfontmaker2">
-                            <strong>BitFontMaker2</strong>
-                        </a>
-                    </div>
-                </div>
+              </div>
             </div>
-        </footer>
+
+            <div class="columns">
+              <div class="column">
+                <div class="field">
+                  <label for="encodedText" class="label">
+                    <span>Encoded text</span>
+                    <button
+                      @click="encodedText = ''"
+                      class="delete is-pulled-right"
+                      style="margin-top: 6px"
+                      title="Clear"
+                    ></button>
+                  </label>
+                  <div class="control">
+                    <textarea
+                      id="encodedText"
+                      v-model="encodedText"
+                      class="textarea"
+                      :style="fontStyle"
+                      contenteditable="true"
+                    ></textarea>
+                  </div>
+                </div>
+
+                <div
+                  v-for="(characterGroup, index) in currentLanguage.characters"
+                  :key="index"
+                  class="buttons is-centered is-marginless has-addons"
+                >
+                  <button
+                    v-for="(character, index) in characterGroup"
+                    :key="index"
+                    @click="encodedText += character"
+                    class="button"
+                    :style="fontStyle"
+                    :title="character"
+                  >
+                    {{ character }}
+                  </button>
+                </div>
+
+                <div class="buttons is-centered is-marginless has-addons">
+                  <button
+                    @click="encodedText += ' '"
+                    class="button"
+                    title="Space"
+                  >
+                    <strong>␣</strong>
+                  </button>
+                  <button
+                    @click="encodedText += '\n'"
+                    class="button"
+                    title="Newline"
+                  >
+                    <strong>↵</strong>
+                  </button>
+                  <button
+                    @click="encodedText = encodedText.slice(0, -1)"
+                    class="button"
+                    title="Backspace"
+                  >
+                    <strong>←</strong>
+                  </button>
+                </div>
+              </div>
+
+              <div class="column">
+                <div class="field">
+                  <label for="decodedText" class="label">Decoded text</label>
+                  <div class="control">
+                    <textarea id="decodedText" class="textarea" readonly="true">
+{{ decodedText }}</textarea
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+      <footer class="footer">
+        <div class="container">
+          <div class="level">
+            <div class="level-item">
+              <p>Powered by&nbsp;</p>
+              <a href="https://vuejs.org">
+                <img
+                  src="https://raw.githubusercontent.com/vuejs/art/master/logo.png"
+                  alt="Vue.js"
+                  width="100px"
+                />
+              </a>
+            </div>
+
+            <div class="level-item">
+              <p>Styled with&nbsp;</p>
+              <a href="https://bulma.io">
+                <img
+                  src="https://raw.githubusercontent.com/jgthms/bulma/master/docs/images/bulma-logo.png"
+                  alt="Bulma"
+                  width="100px"
+                />
+              </a>
+            </div>
+
+            <div class="level-item">
+              <p>Fonts created using&nbsp;</p>
+              <a href="https://www.pentacom.jp/pentacom/bitfontmaker2">
+                <strong>BitFontMaker2</strong>
+              </a>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
     <script src="js/languages.js"></script>
     <script src="js/main.js"></script>
-</body>
-
+  </body>
 </html>
